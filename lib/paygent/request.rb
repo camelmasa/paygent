@@ -86,6 +86,11 @@ module Paygent
       end
     end
 
+    def success?
+      return true if success_processed? && success_response? && body_hash[:response_code].blank?
+      false
+    end
+
     def success_response?
       response_code.to_i == 200
     end
